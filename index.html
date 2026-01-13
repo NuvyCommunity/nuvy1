@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Intento de evitar caché desde HTML -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* cambiá a cover si querés que llene cortando */
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <img id="img" alt="overlay" />
+
+  <script>
+    const IMAGE_PATH = "current.png"; // nombre fijo
+    const REFRESH_MS = 2000;          // cada 2s (subilo si querés)
+
+    const img = document.getElementById("img");
+
+    function refresh() {
+      // Mantiene el link del overlay igual, pero fuerza a bajar la imagen nueva
+      img.src = `${IMAGE_PATH}?t=${Date.now()}`;
+    }
+
+    refresh();
+    setInterval(refresh, REFRESH_MS);
+  </script>
+</body>
+</html>
